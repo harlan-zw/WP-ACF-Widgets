@@ -16,7 +16,7 @@ use ACFWidgets\Helpers\WidgetHelper;
 class Loader {
 
     const PLUGIN_NAME = 'ACFWidgets';
-    const VERSION = '1.0.3';
+    const VERSION = '1.0.4';
 
     public static $includes_path;
     public static $cpt_path;
