@@ -24,7 +24,7 @@ class WidgetHelper {
     public $field;
 
     public static function to_acf($name) {
-    	$file = get_stylesheet_directory_uri() . self::get_widgets_dir() . "$name/acf-fields.php";
+    	$file = get_stylesheet_directory() . self::get_widgets_dir() . "$name/acf-fields.php";
 		$acf = [];
     	if (file_exists($file)) {
 			$acf = include $file;
