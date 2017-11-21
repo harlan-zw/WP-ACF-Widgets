@@ -23,7 +23,7 @@ class WidgetACF {
          * Generate the locations based on supported post types
          */
         $locations = [];
-        foreach(WidgetHelper::DEFAULT_SUPPORTED_POST_TYPES as $post_type) {
+        foreach(WidgetHelper::get_supported_post_types() as $post_type) {
             $locations[] = [
                 [
                     'param' => 'post_type',

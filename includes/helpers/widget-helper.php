@@ -51,7 +51,15 @@ class WidgetHelper {
      * @return bool
      */
     public static function is_post_type_supported($post_type) {
-    	return apply_filters('acf-widgets/show-for-post-type', in_array($post_type, self::DEFAULT_SUPPORTED_POST_TYPES), $post_type);
+    	return in_array($post_type, self::get_supported_post_types());
+    }
+
+	/**
+	 * Gets a list of supported post types
+	 * @return array
+	 */
+    public static function get_supported_post_types() {
+	    return apply_filters('acf-widgets/suported-post-types', self::DEFAULT_SUPPORTED_POST_TYPES);
     }
 
     public function get_slug() {

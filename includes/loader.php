@@ -16,7 +16,7 @@ use ACFWidgets\Helpers\WidgetHelper;
 class Loader {
 
     const PLUGIN_NAME = 'ACFWidgets';
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.2';
 
     public static $includes_path;
     public static $cpt_path;
@@ -53,9 +53,7 @@ class Loader {
      */
     public function __construct($classes) {
         self::$includes_path = __DIR__;
-        self::$cpt_path = self::$includes_path . '/cpt/';
         self::$acf_path = self::$includes_path . '/acf/';
-        self::$tax_path = self::$includes_path . '/tax/';
 
         foreach($classes as $class) {
             $this->$class = new $class;
