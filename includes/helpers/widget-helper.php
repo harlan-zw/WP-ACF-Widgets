@@ -90,9 +90,9 @@ class WidgetHelper {
         // declare dynamically to avoid unused variable
         ${'markup'} = false;
         try {
-            ${'markup'} = \App\template(self::get_widgets_dir() . "$field/markup", $vars);
+            ${'markup'} = \App\template("widgets/$field/markup", $vars);
         } catch (\Exception $e) {
-            echo "<p>Widget $field is missing markup!</p>";
+	        echo "<p>Widget $field is missing markup! File: widgets/$field/markup" . "</p>";
             return;
         }
 
