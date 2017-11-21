@@ -1,0 +1,3 @@
+# Disable directory indexing
+# This is a catch all when we are allowed to have .htaccesses here. You should still be putting in an empty php file
+Options -Indexes

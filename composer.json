@@ -1,0 +1,16 @@
+{
+    "name": "harlanzw/acf-widgets-4m",
+    "description": "Widget system for advanced custom fields",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Harlan",
+            "email": "harlan103@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "acf-widgets.php"
+        ]
+    }
+}
