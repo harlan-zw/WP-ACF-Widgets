@@ -16,7 +16,7 @@ use ACFWidgets\Helpers\WidgetHelper;
 class Loader {
 
     const PLUGIN_NAME = 'ACFWidgets';
-    const VERSION = '1.0.2';
+    const VERSION = '1.0.3';
 
     public static $includes_path;
     public static $cpt_path;
@@ -65,7 +65,7 @@ class Loader {
      */
     private function load_acf() {
         // check ACF is loaded
-        if (!function_exists('register_field_group')) {
+        if (!\function_exists('register_field_group')) {
             return;
         }
         if (!file_exists(self::$acf_path)) {
@@ -82,7 +82,7 @@ class Loader {
 
     public function register_widgets() {
         // Check if we have the widgets folder
-        if (!file_exists(get_stylesheet_directory() . '/templates/widgets/')) {
+        if (!file_exists(get_stylesheet_directory() . WidgetHelper::get_widgets_dir())) {
             return;
         }
         $this->widgets = apply_filters('acf-widgets/register', []);

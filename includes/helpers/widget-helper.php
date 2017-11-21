@@ -24,7 +24,7 @@ class WidgetHelper {
     public $field;
 
     public static function to_acf($name) {
-    	$file = self::get_widget_directory() . "$name/acf-fields.php";
+    	$file = get_stylesheet_directory_uri() . self::get_widgets_dir() . "$name/acf-fields.php";
 		$acf = [];
     	if (file_exists($file)) {
 			$acf = include $file;
@@ -41,9 +41,6 @@ class WidgetHelper {
         ];
     }
 
-    public static function get_widget_directory() {
-        return get_stylesheet_directory() . '/templates/widgets/';
-    }
 
     /**
      * Checks if a post type should be rendering the widgets
@@ -55,11 +52,19 @@ class WidgetHelper {
     }
 
 	/**
+	 * Gets the directory that the widgets are within
+	 * @return mixed|void
+	 */
+    public static function get_widgets_dir() {
+	    return apply_filters('acf-widgets/widgets-dir', '/templates/widgets/');
+    }
+
+	/**
 	 * Gets a list of supported post types
 	 * @return array
 	 */
     public static function get_supported_post_types() {
-	    return apply_filters('acf-widgets/suported-post-types', self::DEFAULT_SUPPORTED_POST_TYPES);
+	    return apply_filters('acf-widgets/supported-post-types', self::DEFAULT_SUPPORTED_POST_TYPES);
     }
 
     public function get_slug() {
@@ -85,15 +90,14 @@ class WidgetHelper {
         // declare dynamically to avoid unused variable
         ${'markup'} = false;
         try {
-            ${'markup'} = \App\template("/templates/widgets/$field/markup", $vars);
+            ${'markup'} = \App\template(self::get_widgets_dir() . "$field/markup", $vars);
         } catch (\Exception $e) {
-            dd($e);
             echo "<p>Widget $field is missing markup!</p>";
             return;
         }
 
         //pass the widgets content to our template
-        include dirname(__DIR__) . '/partials/widget-template.php';
+        include \dirname(__DIR__) . '/partials/widget-template.php';
 
         do_action('acf-widgets/after-' . $field);
     }
