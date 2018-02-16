@@ -82,7 +82,7 @@ class Loader {
 
     public function register_widgets() {
         // Check if we have the widgets folder
-        if (!file_exists(get_stylesheet_directory() . WidgetHelper::get_widgets_dir())) {
+        if (!file_exists(WidgetHelper::get_widgets_dir())) {
             return;
         }
         $this->widgets = apply_filters('acf-widgets/register', []);
