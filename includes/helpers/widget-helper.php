@@ -78,7 +78,7 @@ class WidgetHelper {
      * @param $field_type_index int This is used in the widget-template - Do not remove
      */
     public static function render($field, $data, $field_type_index) {
-        do_action('acf-widgets/before-' . $field);
+        $data = apply_filters('acf-widgets/before-' . $field, $data, $field, $field_type_index);
 
         $vars = [];
         // load in our acf fields into scope of the partial files
@@ -88,13 +88,14 @@ class WidgetHelper {
         }
 
         // declare dynamically to avoid unused variable
-        ${'markup'} = false;
+        $markup = false;
         try {
-            ${'markup'} = \App\template("widgets/$field/markup", $vars);
+            $markup = \App\template("widgets/$field/markup", $vars);
         } catch (\Exception $e) {
 	        echo "<p>Widget $field is missing markup! File: widgets/$field/markup" . "</p>";
             return;
         }
+        $markup = apply_filters('acf-widgets/markup-' . $field, $markup);
 
         //pass the widgets content to our template
         include \dirname(__DIR__) . '/partials/widget-template.php';
